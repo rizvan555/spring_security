@@ -1,3 +1,4 @@
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: rizvan
@@ -14,12 +15,17 @@
 <h1>Information for all Employees</h1>
 <br>
 <br>
-<input type="button" name="name" value="Salary" onclick="window.location.href='hr_info'"/>
-Only for HR staff
+<security:authorize access="hasRole('HR')">
+    <input type="button" name="name" value="Salary" onclick="window.location.href='hr_info'"/>
+    Only for HR staff
+</security:authorize>
 <br>
 <br>
+<security:authorize access="hasRole('MANAGER')">
 <input type="button" name="name" value="Performance" onclick="window.location.href='manager_info'"/>
 Only for Management staff
+</security:authorize>
+
 <br>
 <br>
 </body>
